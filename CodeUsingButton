@@ -1,0 +1,29 @@
+//Kyle Clays: Programming in C: October 1st, 2019: Push Button Code
+// The motor uses an input from a button pull-up which makes the servo rotate 180 degees.
+
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+
+int buttonpin = 2;  // analog pin used to connect the potentiometer
+int val;    // variable to read the value from the analog pin
+int angle;
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  pinMode(buttonpin,INPUT_PULLUP);
+}
+
+
+void loop() {
+  val = digitalRead(buttonpin);            // USED BUTTON INSTEAD OF POTENTIOMETER
+  if (val == HIGH){
+    
+    angle = 180;
+  }
+ else if (val == LOW){
+    
+    angle = 0;
+  }
+  myservo.write(angle);                  // sets the servo position according to the scaled value
+  delay(15);                           // waits for the servo to get there
+}
